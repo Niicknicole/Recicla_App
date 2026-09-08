@@ -1,0 +1,60 @@
+.cadastro {
+  min-height: 100vh;
+  padding: 60px 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cadastro-title {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.cadastro-description {
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.cadastro-form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastro-form label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.cadastro-form input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.cadastro-form h2 {
+  margin-top: 25px;
+}
+
+.cadastro-button {
+  margin-top: 25px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2e7d32;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cadastro-button:hover {
+  transform: translateY(-2px);
+}

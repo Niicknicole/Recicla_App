@@ -1,0 +1,55 @@
+.meus-materiais {
+  min-height: 100vh;
+  padding: 40px 8%;
+}
+
+.meus-materiais-header {
+  margin-bottom: 40px;
+}
+
+.meus-materiais-header h1 {
+  margin-bottom: 10px;
+}
+
+.meus-materiais-header p {
+  color: #666;
+}
+
+.materiais-lista {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.material-card {
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.material-card h2 {
+  margin-top: 0;
+  text-transform: capitalize;
+}
+
+.material-card p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.sem-materiais {
+  padding: 40px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.sem-materiais p {
+  color: #666;
+}
+
+@media (max-width: 700px) {
+  .materiais-lista {
+    grid-template-columns: 1fr;
+  }
+}

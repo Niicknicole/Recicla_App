@@ -1,0 +1,75 @@
+.dashboard-coletador {
+  min-height: 100vh;
+  padding: 30px 8%;
+}
+
+.dashboard-coletador-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.dashboard-coletador-header h1 {
+  margin: 0;
+}
+
+.dashboard-coletador-header button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.dashboard-coletador-welcome {
+  margin-bottom: 40px;
+}
+
+.dashboard-coletador-welcome h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-coletador-welcome p {
+  color: #666;
+}
+
+.materiais-disponiveis h2 {
+  margin-bottom: 25px;
+}
+
+.materiais-coletador-lista {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.material-coletador-card {
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.material-coletador-card h3 {
+  margin-top: 0;
+  text-transform: capitalize;
+}
+
+.material-coletador-card p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.material-coletador-card button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .materiais-coletador-lista {
+    grid-template-columns: 1fr;
+  }
+}
