@@ -2,6 +2,16 @@
 
 Plataforma web para conectar pessoas interessadas em destinar materiais recicláveis com pessoas que realizam a coleta, incentivando o descarte adequado e a sustentabilidade na comunidade.
 
+-----
+<p align="center">
+  <img
+    width="750"
+    height="750"
+    alt="Um"
+    src="https://github.com/user-attachments/assets/d6bd107c-16d0-49e7-8e25-bf57e3aa7d77"
+  />
+</p>
+
 ## Sobre o projeto
 
 O **Recicla+** é um projeto desenvolvido com o objetivo de facilitar a destinação de materiais recicláveis que muitas vezes não são atendidos pela coleta convencional ou que são difíceis de transportar até um ponto de descarte.
@@ -175,3 +185,15 @@ Realtime Database
 ```bash
 npm run dev
 ```
+
+
+----- 
+
+<p align="center">
+  <img
+    width="750"
+    height="750"
+    alt="Um"
+    src="https://github.com/user-attachments/assets/62fc6ba2-ec5d-4564-8e14-a3fad1c8ac93"
+  />
+</p>
