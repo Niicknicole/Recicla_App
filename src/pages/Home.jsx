@@ -1,99 +1,173 @@
 import "./Home.css";
 import { Link } from "react-router-dom";
+import imagem from "../assets/imagem1.jpg";
 
 function Home() {
   return (
-    <main className="home">
-      <section className="home-hero">
-        <h1 className="home-title">Recicla+</h1>
+    <main
+      className="home"
+      style={{ backgroundImage: `url(${imagem})` }}
+    >
+      <header className="home-header">
+        <div className="home-logo">
+          <span className="home-logo-icon">♻</span>
+          <span>Recicla<span>+</span></span>
+        </div>
 
-        <h2 className="home-subtitle">
-          Conectando pessoas para construir uma comunidade mais sustentável.
-        </h2>
+        <nav className="home-nav">
+          <a href="#inicio">Início</a>
+          <a href="#como-funciona">Sobre</a>
 
-        <p className="home-description">
-          O Recicla+ conecta pessoas que possuem materiais recicláveis
-          a coletadores da comunidade, facilitando a reciclagem e o
-          reaproveitamento de materiais.
-        </p>
+          <Link to="/login" className="home-nav-login">
+            Entrar
+          </Link>
 
-        <div className="home-actions">
-      <Link
-         to="/cadastro"
-         className="home-button home-button-primary"
-        >
-         Criar minha conta
-      </Link>
+          <Link to="/cadastro" className="home-nav-register">
+            Criar minha conta
+          </Link>
+        </nav>
+      </header>
 
-      <Link
-       to="/login"
-       className="home-button home-button-secondary"
-      >
-       Entrar
-      </Link>
-      </div>
-      </section>
+      <section className="home-hero" id="inicio">
+        <div className="home-hero-content">
+          <h1 className="home-title">
+            <span>Recicla</span>
+            <strong>+</strong>
+          </h1>
 
-      <section className="home-how-it-works">
-        <h2 className="home-section-title">Como funciona?</h2>
+          <h2 className="home-subtitle">
+            Conectando pessoas para construir
+            <br />
+            uma comunidade <span>mais sustentável.</span>
+          </h2>
 
-        <div className="home-steps">
-          <div className="home-step">
-            <h3>1. Cadastre-se</h3>
-            <p>Crie sua conta e escolha como deseja participar.</p>
-          </div>
+          <p className="home-description">
+            O Recicla+ conecta pessoas que possuem materiais recicláveis
+            a coletadores da comunidade, facilitando a reciclagem e o
+            reaproveitamento de materiais.
+          </p>
 
-          <div className="home-step">
-            <h3>2. Disponibilize ou encontre materiais</h3>
-            <p>
-              Você pode disponibilizar materiais recicláveis ou encontrar
-              pontos disponíveis para coleta.
-            </p>
-          </div>
+          <div className="home-actions">
+            <Link
+              to="/cadastro"
+              className="home-button home-button-primary"
+            >
+              Criar minha conta
+              <span>→</span>
+            </Link>
 
-          <div className="home-step">
-            <h3>3. Contribua com a comunidade</h3>
-            <p>
-              Ajude a promover a reciclagem, o reaproveitamento e uma
-              economia mais sustentável.
-            </p>
+            <Link
+              to="/login"
+              className="home-button home-button-secondary"
+            >
+              Entrar
+            </Link>
           </div>
         </div>
       </section>
+
+      <section
+        className="home-how-it-works"
+        id="como-funciona"
+      >
+        <div className="home-glass-section">
+          <h2 className="home-section-title">
+            <span></span>
+            Como funciona?
+            <span></span>
+          </h2>
+
+          <div className="home-steps">
+            <div className="home-step">
+              <div className="home-step-icon">♙</div>
+
+              <div className="home-step-number">1</div>
+
+              <h3>Cadastre-se</h3>
+
+              <p>
+                Crie sua conta e escolha como deseja participar.
+              </p>
+            </div>
+
+            <div className="home-step">
+              <div className="home-step-icon">🍃</div>
+
+              <div className="home-step-number">2</div>
+
+              <h3>Disponibilize ou encontre materiais</h3>
+
+              <p>
+                Você pode disponibilizar materiais recicláveis ou
+                encontrar materiais disponíveis para coleta.
+              </p>
+            </div>
+
+            <div className="home-step">
+              <div className="home-step-icon">🌎</div>
+
+              <div className="home-step-number">3</div>
+
+              <h3>Contribua com a comunidade</h3>
+
+              <p>
+                Ajude a promover a reciclagem, o reaproveitamento
+                e uma economia mais sustentável.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="home-impact">
-  <h2 className="home-section-title">Nosso impacto</h2>
+        <div className="home-impact-content">
+          <h2 className="home-section-title">
+            <span></span>
+            Nosso impacto
+            <span></span>
+          </h2>
 
-  <p className="home-impact-description">
-    O Recicla+ busca conectar pessoas, incentivar a reciclagem e fortalecer
-    iniciativas sustentáveis dentro da comunidade.
-  </p>
+          <p className="home-impact-description">
+            O Recicla+ busca conectar pessoas, incentivar a reciclagem
+            e fortalecer iniciativas sustentáveis dentro da comunidade.
+          </p>
 
-  <div className="home-impact-cards">
-    <div className="home-impact-card">
-      <h3>Economia circular</h3>
-      <p>
-        Incentivamos o reaproveitamento de materiais e reduzimos o descarte
-        desnecessário de recursos.
-      </p>
-    </div>
+          <div className="home-impact-cards">
+            <div className="home-impact-card">
+              <div className="home-impact-icon">♻</div>
 
-    <div className="home-impact-card">
-      <h3>Comunidade</h3>
-      <p>
-        Conectamos pessoas que possuem materiais recicláveis com coletadores
-        e pontos de coleta da região.
-      </p>
-    </div>
+              <h3>Economia circular</h3>
 
-    <div className="home-impact-card">
-      <h3>Sustentabilidade</h3>
-      <p>
-        Facilitamos pequenas ações que podem contribuir para uma comunidade
-        mais consciente e sustentável.
-      </p>
-    </div>
-  </div>
-</section>
+              <p>
+                Incentivamos o reaproveitamento de materiais e reduzimos
+                o descarte desnecessário de recursos.
+              </p>
+            </div>
+
+            <div className="home-impact-card">
+              <div className="home-impact-icon">♧</div>
+
+              <h3>Comunidade</h3>
+
+              <p>
+                Conectamos pessoas que possuem materiais recicláveis
+                com coletadores e pontos de coleta da região.
+              </p>
+            </div>
+
+            <div className="home-impact-card">
+              <div className="home-impact-icon">🍃</div>
+
+              <h3>Sustentabilidade</h3>
+
+              <p>
+                Facilitamos pequenas ações que podem contribuir para
+                uma comunidade mais consciente e sustentável.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

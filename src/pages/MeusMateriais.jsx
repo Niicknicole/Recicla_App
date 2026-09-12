@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, get } from "firebase/database";
 import app from "../firebase";
+import { useNavigate } from "react-router-dom";
 import "./MeusMateriais.css";
 
 function MeusMateriais() {
+  const navigate = useNavigate();
   const [materiais, setMateriais] = useState([]);
 
   const auth = getAuth(app);
@@ -104,10 +106,10 @@ function MeusMateriais() {
     ? "unidades"
     : material.unidade === "caixas"
     ? "caixas"
-    : material.unidade === "saco-1l"
+    : material.unidade === "saco-5L"
     ? "sacos de 1 L"
-    : material.unidade === "saco-10l"
-    ? "sacos de 10 L"
+    : material.unidade === "saco-5L"
+    ? "sacos de 5 L"
     : material.unidade}
 </p>
 
@@ -126,14 +128,16 @@ function MeusMateriais() {
                 </p>
               )}
 
-              <p>
-                <strong>Status:</strong>{" "}
-                {material.status === "disponivel"
-                  ? "Disponível"
-                  : material.status === "em_coleta"
-                  ? "Em coleta"
-                  : material.status}
-              </p>
+           <p>
+  <strong>Status:</strong>{" "}
+  {material.status === "disponivel"
+    ? "Disponível"
+    : material.status === "em_coleta"
+    ? "Em coleta"
+    : material.status === "finalizada"
+    ? "Coleta finalizada"
+    : material.status}
+</p>
 
               {material.coletador && (
                 <p>
@@ -146,6 +150,13 @@ function MeusMateriais() {
           ))}
         </section>
       )}
+      
+    <button
+        className="pontos-voltar"
+        onClick={() => navigate("/gerador")}
+      >
+        Voltar
+      </button>
     </main>
   );
 }

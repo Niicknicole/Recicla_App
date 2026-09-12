@@ -41,7 +41,7 @@ function DashboardGerador() {
       <header className="dashboard-header">
         <h1>Recicla+</h1>
 
-        <button>
+        <button onClick={() => navigate("/perfil")}>
           Meu perfil
         </button>
       </header>
@@ -93,8 +93,8 @@ function DashboardGerador() {
             Encontre pontos de coleta disponíveis na sua região.
           </p>
 
-          <button>
-            Ver pontos
+          <button onClick={() => navigate("/pontos-coleta")}>
+          Ver pontos
           </button>
         </div>
       </section>

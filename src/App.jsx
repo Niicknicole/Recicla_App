@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
@@ -8,6 +9,9 @@ import DashboardColetador from "./pages/DashboardColetador";
 import DisponibilizarMaterial from "./pages/DisponibilizarMaterial";
 import MeusMateriais from "./pages/MeusMateriais";
 import DetalhesMaterial from "./pages/DetalhesMaterial";
+import Perfil from "./pages/Perfil";
+import PontosColeta from "./pages/PontosColeta";
+import RotaProtegida from "./components/RotaProtegida";
 
 function App() {
   return (
@@ -16,21 +20,69 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/senha" element={<Senha />} />
-      <Route path="/gerador" element={<DashboardGerador />} />
-      <Route path="/coletador" element={<DashboardColetador />} /> 
+<Route
+  path="/pontos-coleta"
+  element={
+    <RotaProtegida>
+      <PontosColeta />
+    </RotaProtegida>
+  }
+/>
       <Route
-      path="/disponibilizar"
-      element={<DisponibilizarMaterial />}
+        path="/gerador"
+        element={
+          <RotaProtegida>
+            <DashboardGerador />
+          </RotaProtegida>
+        }
       />
+
       <Route
-      path="/meus-materiais"
-      element={<MeusMateriais />}
+        path="/coletador"
+        element={
+          <RotaProtegida>
+            <DashboardColetador />
+          </RotaProtegida>
+        }
       />
+
       <Route
-       path="/material/:id"
-       element={<DetalhesMaterial />}
-       />
+        path="/disponibilizar"
+        element={
+          <RotaProtegida>
+            <DisponibilizarMaterial />
+          </RotaProtegida>
+        }
+      />
+
+      <Route
+        path="/meus-materiais"
+        element={
+          <RotaProtegida>
+            <MeusMateriais />
+          </RotaProtegida>
+        }
+      />
+
+      <Route
+        path="/material/:id"
+        element={
+          <RotaProtegida>
+            <DetalhesMaterial />
+          </RotaProtegida>
+        }
+      />
+
+      <Route
+        path="/perfil"
+        element={
+          <RotaProtegida>
+            <Perfil />
+          </RotaProtegida>
+        }
+      />
     </Routes>
+    
   );
 }
 

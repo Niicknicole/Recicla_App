@@ -1,4 +1,4 @@
-.meus-materiais {
+.pontos-coleta {
   min-height: 100vh;
   padding: 50px 8% 70px;
   background: linear-gradient(
@@ -12,8 +12,7 @@
   overflow: hidden;
 }
 
-/* Elementos decorativos */
-.meus-materiais::before {
+.pontos-coleta::before {
   content: "";
   position: absolute;
   width: 300px;
@@ -24,7 +23,7 @@
   right: -70px;
 }
 
-.meus-materiais::after {
+.pontos-coleta::after {
   content: "";
   position: absolute;
   width: 230px;
@@ -35,42 +34,39 @@
   left: -70px;
 }
 
-/* Cabeçalho */
-.meus-materiais-header {
+.pontos-coleta-header {
   position: relative;
   z-index: 1;
   max-width: 800px;
-  margin: 0 auto 45px;
+  margin: 0 auto 40px;
   text-align: center;
 }
 
-.meus-materiais-header h1 {
+.pontos-coleta-header h1 {
   margin: 0 0 12px;
   font-size: 2.5rem;
   font-weight: 800;
   color: #07536a;
 }
 
-.meus-materiais-header p {
+.pontos-coleta-header p {
   margin: 0;
   font-size: 1.05rem;
   line-height: 1.6;
   color: #3d7180;
 }
 
-/* Lista */
-.materiais-lista {
+.pontos-lista {
   position: relative;
   z-index: 1;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 25px;
 }
 
-/* Card */
-.material-card {
+.ponto-card {
   padding: 30px;
   background: rgba(255, 255, 255, 0.74);
   border: 1px solid rgba(255, 255, 255, 0.85);
@@ -84,102 +80,30 @@
     box-shadow 0.25s ease;
 }
 
-.material-card:hover {
+.ponto-card:hover {
   transform: translateY(-5px);
   box-shadow:
     0 22px 45px rgba(28, 125, 145, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
-.material-card h2 {
+.ponto-card h2 {
   margin: 0 0 20px;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: #08708a;
-  text-transform: capitalize;
 }
 
-.material-card p {
-  margin: 10px 0;
+.ponto-card p {
+  margin: 11px 0;
   color: #4b7480;
   line-height: 1.55;
 }
 
-.material-card strong {
+.ponto-card strong {
   color: #07536a;
 }
 
-/* Mensagem sem materiais */
-.sem-materiais {
-  position: relative;
-  z-index: 1;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 40px 30px;
-  text-align: center;
-
-  background: rgba(255, 255, 255, 0.74);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  border-radius: 25px;
-
-  box-shadow:
-    0 18px 40px rgba(28, 125, 145, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-
-  backdrop-filter: blur(14px);
-}
-
-.sem-materiais h2 {
-  margin: 0 0 12px;
-  color: #08708a;
-  font-size: 1.4rem;
-}
-
-.sem-materiais p {
-  margin: 0;
-  color: #5d7f87;
-  line-height: 1.6;
-}
-
-/* Responsividade */
-@media (max-width: 900px) {
-  .materiais-lista {
-    grid-template-columns: 1fr;
-    max-width: 650px;
-  }
-}
-
-@media (max-width: 700px) {
-  .meus-materiais {
-    padding: 35px 6% 50px;
-  }
-
-  .meus-materiais-header {
-    margin-bottom: 35px;
-  }
-
-  .meus-materiais-header h1 {
-    font-size: 2rem;
-  }
-
-  .meus-materiais-header p {
-    font-size: 1rem;
-  }
-
-  .material-card {
-    padding: 25px;
-    border-radius: 22px;
-  }
-
-  .material-card h2 {
-    font-size: 1.3rem;
-  }
-
-  .sem-materiais {
-    padding: 30px 20px;
-    border-radius: 22px;
-  }
-}
 .pontos-voltar {
   position: relative;
   z-index: 1;
@@ -203,4 +127,34 @@
 .pontos-voltar:hover {
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.95);
+}
+
+@media (max-width: 900px) {
+  .pontos-lista {
+    grid-template-columns: 1fr;
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 700px) {
+  .pontos-coleta {
+    padding: 35px 6% 50px;
+  }
+
+  .pontos-coleta-header h1 {
+    font-size: 2rem;
+  }
+
+  .pontos-coleta-header p {
+    font-size: 1rem;
+  }
+
+  .ponto-card {
+    padding: 25px;
+    border-radius: 22px;
+  }
+
+  .ponto-card h2 {
+    font-size: 1.25rem;
+  }
 }

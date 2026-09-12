@@ -1,70 +1,246 @@
 .dashboard-gerador {
   min-height: 100vh;
-  padding: 30px 8%;
+  padding: 30px 8% 60px;
+  background: linear-gradient(
+    180deg,
+    #b8f0ff 0%,
+    #e9fbff 45%,
+    #dff7e5 100%
+  );
+  color: #07536a;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Elementos decorativos */
+
+.dashboard-gerador::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  top: -100px;
+  right: -60px;
+}
+
+.dashboard-gerador::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(86, 210, 172, 0.18);
+  bottom: -80px;
+  left: -70px;
+}
+
+/* Cabeçalho */
+
 .dashboard-header {
+  position: relative;
+  z-index: 1;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 60px;
+
+  margin-bottom: 70px;
 }
 
 .dashboard-header h1 {
   margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #08708a;
 }
 
 .dashboard-header button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
+  padding: 11px 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.7);
+  color: #07536a;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
   cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(20, 120, 140, 0.12);
+  backdrop-filter: blur(10px);
+
+  transition: 0.2s ease;
 }
 
+.dashboard-header button:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Boas-vindas */
+
 .dashboard-welcome {
-  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+
+  max-width: 800px;
+  margin: 0 auto 45px;
+
+  text-align: center;
 }
 
 .dashboard-welcome h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  margin: 0 0 12px;
+
+  font-size: 2.5rem;
+  font-weight: 800;
+
+  color: #07536a;
 }
 
 .dashboard-welcome p {
-  color: #666;
+  margin: 0;
+
+  font-size: 1.1rem;
+  color: #3d7180;
 }
 
+/* Cards */
+
 .dashboard-options {
+  position: relative;
+  z-index: 1;
+
+  max-width: 1100px;
+  margin: 0 auto;
+
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
 
 .dashboard-card {
-  padding: 25px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
+  min-height: 250px;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 25px;
+
+  box-shadow:
+    0 15px 35px rgba(28, 125, 145, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  backdrop-filter: blur(14px);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 20px 40px rgba(28, 125, 145, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .dashboard-card h3 {
-  margin-top: 0;
+  margin: 0 0 15px;
+
+  font-size: 1.35rem;
+  color: #08708a;
 }
 
 .dashboard-card p {
-  color: #666;
-  line-height: 1.5;
+  margin: 0;
+
+  line-height: 1.6;
+  color: #4b7480;
+
+  flex: 1;
 }
 
 .dashboard-card button {
-  margin-top: 10px;
-  padding: 10px 18px;
+  margin-top: 25px;
+
+  padding: 13px 20px;
+
   border: none;
-  border-radius: 8px;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #38b86b,
+    #1f9d58
+  );
+
+  color: white;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
   cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(31, 157, 88, 0.22);
+
+  transition: 0.2s ease;
+}
+
+.dashboard-card button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 22px rgba(31, 157, 88, 0.3);
+}
+
+/* Responsividade */
+
+@media (max-width: 900px) {
+  .dashboard-options {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+  }
+
+  .dashboard-card {
+    min-height: auto;
+  }
 }
 
 @media (max-width: 700px) {
-  .dashboard-options {
-    grid-template-columns: 1fr;
+  .dashboard-gerador {
+    padding: 25px 6% 50px;
+  }
+
+  .dashboard-header {
+    margin-bottom: 50px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .dashboard-header button {
+    padding: 9px 14px;
+    font-size: 0.85rem;
+  }
+
+  .dashboard-welcome h2 {
+    font-size: 2rem;
+  }
+
+  .dashboard-welcome p {
+    font-size: 1rem;
+  }
+
+  .dashboard-card {
+    padding: 25px;
   }
 }

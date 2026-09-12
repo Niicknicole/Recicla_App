@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, push, set } from "firebase/database";
 import app from "../firebase";
+import "./DisponibilizarMaterial.css";
 
 function DisponibilizarMaterial() {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ function DisponibilizarMaterial() {
   };
 
   return (
-    <main>
+    <main className="disponibilizar-material">
       <h1>Disponibilizar material</h1>
 
       <p>
@@ -171,6 +172,12 @@ function DisponibilizarMaterial() {
           Disponibilizar material
         </button>
       </form>
+   <button
+        className="pontos-voltar"
+        onClick={() => navigate("/gerador")}
+      >
+        Voltar
+      </button>
     </main>
   );
 }

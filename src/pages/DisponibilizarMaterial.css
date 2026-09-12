@@ -1,0 +1,272 @@
+.disponibilizar-material {
+  min-height: 100vh;
+  padding: 50px 20px 70px;
+
+  background: linear-gradient(
+    180deg,
+    #b8f0ff 0%,
+    #e9fbff 45%,
+    #dff7e5 100%
+  );
+
+  color: #07536a;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elementos decorativos */
+
+.disponibilizar-material::before {
+  content: "";
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  top: -120px;
+  right: -70px;
+}
+
+.disponibilizar-material::after {
+  content: "";
+  position: absolute;
+
+  width: 230px;
+  height: 230px;
+
+  border-radius: 50%;
+
+  background: rgba(86, 210, 172, 0.18);
+
+  bottom: -80px;
+  left: -70px;
+}
+
+/* Cabeçalho */
+
+.disponibilizar-material > h1,
+.disponibilizar-material > p,
+.disponibilizar-material > form {
+  position: relative;
+  z-index: 1;
+}
+
+.disponibilizar-material > h1 {
+  max-width: 700px;
+  margin: 0 auto 12px;
+
+  text-align: center;
+
+  font-size: 2.5rem;
+  font-weight: 800;
+
+  color: #07536a;
+}
+
+.disponibilizar-material > p {
+  max-width: 650px;
+  margin: 0 auto 35px;
+
+  text-align: center;
+
+  font-size: 1.05rem;
+  line-height: 1.6;
+
+  color: #3d7180;
+}
+
+/* Formulário */
+
+.disponibilizar-material form {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 0 auto;
+
+  padding: 35px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  background: rgba(255, 255, 255, 0.74);
+
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 28px;
+
+  box-shadow:
+    0 18px 40px rgba(28, 125, 145, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  backdrop-filter: blur(14px);
+}
+
+/* Labels */
+
+.disponibilizar-material form label {
+  margin-top: 12px;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  color: #07536a;
+}
+
+/* Campos */
+
+.disponibilizar-material form input,
+.disponibilizar-material form select,
+.disponibilizar-material form textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 13px 15px;
+
+  border: 1px solid #9bd8e5;
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  color: #07536a;
+
+  font-family: inherit;
+  font-size: 1rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+/* Foco */
+
+.disponibilizar-material form input:focus,
+.disponibilizar-material form select:focus,
+.disponibilizar-material form textarea:focus {
+  border-color: #36b879;
+
+  background: #ffffff;
+
+  box-shadow: 0 0 0 3px rgba(54, 184, 121, 0.14);
+}
+
+/* Select */
+
+.disponibilizar-material form select {
+  cursor: pointer;
+}
+
+.disponibilizar-material form select:disabled {
+  background: rgba(220, 235, 238, 0.65);
+  color: #7a969d;
+  cursor: not-allowed;
+}
+
+/* Placeholder */
+
+.disponibilizar-material form input::placeholder,
+.disponibilizar-material form textarea::placeholder {
+  color: #8ba7ae;
+}
+
+/* Descrição */
+
+.disponibilizar-material form textarea {
+  min-height: 120px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+/* Botão */
+
+.disponibilizar-material form button {
+  margin-top: 25px;
+
+  padding: 14px 20px;
+
+  border: none;
+  border-radius: 15px;
+
+  background: linear-gradient(
+    135deg,
+    #38b86b,
+    #1f9d58
+  );
+
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 9px 20px rgba(31, 157, 88, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.disponibilizar-material form button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 13px 24px rgba(31, 157, 88, 0.3);
+}
+
+.disponibilizar-material form button:active {
+  transform: translateY(0);
+}
+
+/* Responsividade */
+
+@media (max-width: 700px) {
+  .disponibilizar-material {
+    padding: 35px 6% 50px;
+  }
+
+  .disponibilizar-material > h1 {
+    font-size: 2rem;
+  }
+
+  .disponibilizar-material > p {
+    font-size: 1rem;
+  }
+
+  .disponibilizar-material form {
+    padding: 25px 20px;
+    border-radius: 22px;
+  }
+}
+.pontos-voltar {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 35px auto 0;
+  padding: 13px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.75);
+  color: #07536a;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(20, 120, 140, 0.12);
+  backdrop-filter: blur(10px);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.pontos-voltar:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.95);
+}

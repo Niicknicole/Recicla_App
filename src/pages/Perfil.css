@@ -1,0 +1,234 @@
+.perfil {
+  min-height: 100vh;
+  padding: 50px 8% 70px;
+  background: linear-gradient(
+    180deg,
+    #b8f0ff 0%,
+    #e9fbff 45%,
+    #dff7e5 100%
+  );
+  color: #07536a;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elementos decorativos */
+.perfil::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  top: -120px;
+  right: -70px;
+}
+
+.perfil::after {
+  content: "";
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: rgba(86, 210, 172, 0.18);
+  bottom: -80px;
+  left: -70px;
+}
+
+/* Título */
+.perfil > h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto 35px;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #07536a;
+}
+
+/* Seções */
+.perfil-section {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto 25px;
+  padding: 30px;
+
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 25px;
+
+  box-shadow:
+    0 18px 40px rgba(28, 125, 145, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  backdrop-filter: blur(14px);
+}
+
+.perfil-section h2 {
+  margin: 0 0 20px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #08708a;
+}
+
+.perfil-section p {
+  margin: 11px 0;
+  color: #4b7480;
+  line-height: 1.55;
+}
+
+.perfil-section strong {
+  color: #07536a;
+}
+
+/* Cards de coleta */
+.coleta-card {
+  margin-top: 18px;
+  padding: 22px;
+
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(155, 216, 229, 0.65);
+  border-radius: 18px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.coleta-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(28, 125, 145, 0.12);
+}
+
+.coleta-card h3 {
+  margin: 0 0 15px;
+  font-size: 1.2rem;
+  color: #08708a;
+  text-transform: capitalize;
+}
+
+.coleta-card p {
+  margin: 8px 0;
+  color: #4b7480;
+  line-height: 1.5;
+}
+
+.coleta-card strong {
+  color: #07536a;
+}
+
+/* Botão finalizar coleta */
+.coleta-card button {
+  margin-top: 15px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 13px;
+
+  background: linear-gradient(
+    135deg,
+    #38b86b,
+    #1f9d58
+  );
+
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(31, 157, 88, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.coleta-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(31, 157, 88, 0.3);
+}
+
+/* Botões inferiores */
+.perfil-voltar,
+.perfil > button:last-child {
+  position: relative;
+  z-index: 1;
+
+  padding: 13px 22px;
+  border-radius: 14px;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Botão Voltar */
+.perfil-voltar {
+  display: block;
+  margin: 30px auto 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.75);
+  color: #07536a;
+
+  box-shadow: 0 8px 20px rgba(20, 120, 140, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.perfil-voltar:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Botão sair */
+.perfil > button:last-child {
+  display: block;
+  margin: 0 auto;
+
+  border: none;
+  background: linear-gradient(
+    135deg,
+    #38b86b,
+    #1f9d58
+  );
+
+  color: white;
+
+  box-shadow: 0 8px 18px rgba(31, 157, 88, 0.22);
+}
+
+.perfil > button:last-child:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(31, 157, 88, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 700px) {
+  .perfil {
+    padding: 35px 6% 50px;
+  }
+
+  .perfil > h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .perfil-section {
+    padding: 25px;
+    border-radius: 22px;
+  }
+
+  .perfil-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .coleta-card {
+    padding: 20px;
+    border-radius: 17px;
+  }
+}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { getDatabase, ref, get } from "firebase/database";
 import app from "../firebase";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -68,32 +69,81 @@ function Login() {
   };
 
   return (
-    <main>
-      <h1>Entrar no Recicla+</h1>
+    <main className="login">
+      <div className="login-decoration login-decoration-one"></div>
+      <div className="login-decoration login-decoration-two"></div>
 
-      <form onSubmit={handleSubmit}>
-        <label>E-mail</label>
-
-        <input
-          type="email"
-          placeholder="Digite seu e-mail"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-
-        <label>Senha</label>
-
-        <input
-          type="password"
-          placeholder="Digite sua senha"
-          value={senha}
-          onChange={(event) => setSenha(event.target.value)}
-        />
-
-        <button type="submit">
-          Entrar
+      <section className="login-card">
+        <button
+          className="login-back"
+          onClick={() => navigate("/")}
+        >
+          ← Voltar
         </button>
-      </form>
+
+        <div className="login-brand">
+          <div className="login-brand-icon">♻</div>
+
+          <h1>
+            Recicla<span>+</span>
+          </h1>
+        </div>
+
+        <div className="login-header">
+          <h2>Bem-vindo de volta</h2>
+
+          <p>
+            Entre na sua conta para continuar contribuindo
+            com a comunidade.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="login-field">
+            <label htmlFor="email">E-mail</label>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="Digite seu e-mail"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </div>
+
+          <div className="login-field">
+            <label htmlFor="senha">Senha</label>
+
+            <input
+              id="senha"
+              type="password"
+              placeholder="Digite sua senha"
+              value={senha}
+              onChange={(event) => setSenha(event.target.value)}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="login-submit"
+          >
+            Entrar
+            <span>→</span>
+          </button>
+        </form>
+
+        <div className="login-register">
+          <p>
+            Ainda não possui uma conta?
+          </p>
+
+          <button
+            onClick={() => navigate("/cadastro")}
+          >
+            Criar minha conta
+          </button>
+        </div>
+      </section>
     </main>
   );
 }

@@ -48,9 +48,9 @@ function DashboardColetador() {
       <header className="dashboard-coletador-header">
         <h1>Recicla+</h1>
 
-        <button>
-          Meu perfil
-        </button>
+       <button onClick={() => navigate("/perfil")}>
+  Meu perfil
+</button>
       </header>
 
       <section className="dashboard-coletador-welcome">
@@ -79,7 +79,14 @@ function DashboardColetador() {
 
                 <p>
                   <strong>Quantidade:</strong>{" "}
-                  {material.quantidade} {material.unidade}
+                  {material.quantidade}{" "}
+{material.unidade === "saco-1l"
+  ? "sacos de 1 L"
+  : material.unidade === "saco-5l"
+  ? "sacos de 5 L"
+  : material.unidade === "caixas"
+  ? "caixas"
+  : "unidades"} 
                 </p>
 
                 <p>
