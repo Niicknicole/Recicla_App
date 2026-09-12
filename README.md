@@ -8,9 +8,10 @@ Plataforma web para conectar pessoas interessadas em destinar materiais reciclá
     width="750"
     height="750"
     alt="Um"
-    src="https://github.com/user-attachments/assets/d6bd107c-16d0-49e7-8e25-bf57e3aa7d77"
+    src="https://github.com/user-attachments/assets/d95c39c5-c5e8-497e-b54c-1f21829e38a4"
   />
 </p>
+
 
 ## Sobre o projeto
 
@@ -186,14 +187,4 @@ Realtime Database
 npm run dev
 ```
 
-
 ----- 
-
-<p align="center">
-  <img
-    width="750"
-    height="750"
-    alt="Um"
-    src="https://github.com/user-attachments/assets/62fc6ba2-ec5d-4564-8e14-a3fad1c8ac93"
-  />
-</p>
