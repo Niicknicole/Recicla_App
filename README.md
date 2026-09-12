@@ -5,8 +5,8 @@ Plataforma web para conectar pessoas interessadas em destinar materiais reciclá
 -----
 <p align="center">
   <img
-    width="750"
-    height="750"
+    width="911"
+    height="791"
     alt="Um"
     src="https://github.com/user-attachments/assets/d95c39c5-c5e8-497e-b54c-1f21829e38a4"
   />
