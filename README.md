@@ -1,6 +1,6 @@
 # Recicla+
 
-Plataforma web para conectar pessoas interessadas em destinar materiais recicláveis com pessoas que realizam a coleta, incentivando o descarte adequado e a sustentabilidade na comunidade.
+Plataforma web para conectar pessoas interessadas em destinar materiais recicláveis com agentes que realizam a coleta, incentivando o descarte adequado e a sustentabilidade na comunidade.
 
 -----
 <p align="center">
