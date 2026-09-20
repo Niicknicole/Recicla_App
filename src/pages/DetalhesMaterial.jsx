@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getDatabase, ref, get, update } from "firebase/database";
 import { getAuth } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import app from "../firebase";
+import "./DetalhesMaterial.css";
 
 function DetalhesMaterial() {
   const navigate = useNavigate();
@@ -11,129 +11,223 @@ function DetalhesMaterial() {
   const { id } = useParams();
 
   const [material, setMaterial] = useState(null);
-  const [usuario, setUsuario] = useState(null);
 
   const db = getDatabase(app);
 
+  const nomesMateriais = {
+    papelao: "Papelão",
+    plastico: "Plástico",
+    latas: "Latas",
+    "garrafas-pet": "Garrafas PET",
+    vidro: "Vidro",
+    eletronicos: "Eletrônicos",
+    outros: "Outros",
+  };
+
+  const formatarUnidade = (unidade) => {
+    switch (unidade) {
+      case "saco-1L":
+      case "saco-1l":
+        return "sacos de 1 L";
+
+      case "saco-5L":
+      case "saco-5l":
+        return "sacos de 5 L";
+
+      case "caixas":
+        return "caixas";
+
+      case "unidades":
+        return "unidades";
+
+      default:
+        return unidade;
+    }
+  };
+
+  const formatarData = (data) => {
+    if (!data) {
+      return "";
+    }
+
+    const partes = data.split("-");
+
+    if (partes.length !== 3) {
+      return data;
+    }
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  };
+
   useEffect(() => {
     const carregarDetalhes = async () => {
-      const referenciaMaterial = ref(db, `materiais/${id}`);
-      const resultadoMaterial = await get(referenciaMaterial);
+      try {
+        const referenciaMaterial = ref(db, `materiais/${id}`);
+        const resultadoMaterial = await get(referenciaMaterial);
 
-      if (!resultadoMaterial.exists()) {
-        return;
-      }
+        if (!resultadoMaterial.exists()) {
+          return;
+        }
 
-      const dadosMaterial = resultadoMaterial.val();
-      setMaterial(dadosMaterial);
+        const dadosMaterial = resultadoMaterial.val();
 
-      const referenciaUsuario = ref(
-        db,
-        `usuarios/${dadosMaterial.usuarioId}`
-      );
-
-      const resultadoUsuario = await get(referenciaUsuario);
-
-      if (resultadoUsuario.exists()) {
-        setUsuario(resultadoUsuario.val());
+        setMaterial(dadosMaterial);
+      } catch (error) {
+        console.error(error);
       }
     };
 
     carregarDetalhes();
   }, [id]);
+
   const assumirColeta = async () => {
-  const usuarioAtual = auth.currentUser;
+    const usuarioAtual = auth.currentUser;
 
-  if (!usuarioAtual) {
-    alert("Você precisa estar logado para realizar esta ação.");
-    navigate("/login");
-    return;
-  }
+    if (!usuarioAtual) {
+      alert("Você precisa estar logado para realizar esta ação.");
+      navigate("/login");
+      return;
+    }
 
-  if (material.usuarioId === usuarioAtual.uid) {
-    alert("Você não pode coletar um material que você mesmo disponibilizou.");
-    return;
-  }
+    if (material.usuarioId === usuarioAtual.uid) {
+      alert(
+        "Você não pode coletar uma coleta que você mesmo disponibilizou."
+      );
+      return;
+    }
 
-  if (material.status !== "disponivel") {
-    alert("Este material não está mais disponível para coleta.");
-    return;
-  }
+    if (material.status !== "disponivel") {
+      alert("Esta coleta não está mais disponível.");
+      return;
+    }
 
-  try {
-    const referencia = ref(db, `materiais/${id}`);
+    try {
+      const referencia = ref(db, `materiais/${id}`);
 
-    await update(referencia, {
-      status: "em_coleta",
-      coletadorId: usuarioAtual.uid,
-    });
+      await update(referencia, {
+        status: "em_coleta",
+        coletadorId: usuarioAtual.uid,
+      });
 
-    alert("Coleta assumida com sucesso!");
+      alert("Coleta assumida com sucesso!");
 
-    navigate("/coletador");
-  } catch (error) {
-    console.error(error);
-    alert("Não foi possível assumir esta coleta.");
-  }
-};
+      navigate("/coletador");
+    } catch (error) {
+      console.error(error);
+      alert("Não foi possível assumir esta coleta.");
+    }
+  };
 
   if (!material) {
     return (
-      <main>
-        <h1>Detalhes do material</h1>
-        <p>Carregando...</p>
+      <main className="detalhes-material">
+        <section className="detalhes-card carregando">
+          <h1>Detalhes da coleta</h1>
+          <p>Carregando...</p>
+        </section>
       </main>
     );
   }
 
   return (
-    <main>
-      <h1>Detalhes da coleta</h1>
+    <main className="detalhes-material">
+      <section className="detalhes-card">
+        <header className="detalhes-header">
+          <h1>Detalhes da coleta</h1>
 
-      <section>
-        <h2>{material.material}</h2>
-
-        <p>
-          <strong>Quantidade:</strong>{" "}
-          {material.quantidade} {material.unidade}
-        </p>
-
-        <p>
-          <strong>Data:</strong> {material.data}
-        </p>
-
-        <p>
-          <strong>Horário:</strong> {material.horario}
-        </p>
-
-        {material.descricao && (
           <p>
-            <strong>Descrição:</strong> {material.descricao}
+            Confira os materiais e as informações antes de assumir
+            esta coleta.
           </p>
-        )}
-      </section>
+        </header>
 
-      {usuario && (
-        <section>
-          <h2>Local da coleta</h2>
+        <section className="detalhes-secao">
+          <h2>Materiais</h2>
+
+          <div className="detalhes-materiais">
+            {material.materiais?.map((item, index) => (
+              <div
+                className="detalhes-material-item"
+                key={index}
+              >
+                <div>
+                  <strong>
+                    {nomesMateriais[item.material] ||
+                      item.material}
+                  </strong>
+
+                  <span>
+                    {item.quantidade}{" "}
+                    {formatarUnidade(item.unidade)}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="detalhes-secao">
+          <h2>Disponibilidade</h2>
 
           <p>
-            <strong>Rua:</strong> {usuario.rua}
+            <strong>Data:</strong>{" "}
+            {formatarData(material.data)}
           </p>
 
           <p>
-            <strong>Número:</strong> {usuario.numero}
-          </p>
-
-          <p>
-            <strong>CEP:</strong> {usuario.cep}
+            <strong>Horário:</strong> {material.horario}
           </p>
         </section>
-      )}
 
-      <button onClick={assumirColeta}>
-       Tenho interesse em coletar
-      </button>
+        {material.descricao && (
+          <section className="detalhes-secao">
+            <h2>Descrição</h2>
+
+            <p className="descricao">
+              {material.descricao}
+            </p>
+          </section>
+        )}
+
+        <section className="detalhes-secao">
+          <h2>Localização aproximada</h2>
+
+          <div className="localizacao-box">
+            <strong>
+              {material.bairro || "Bairro não informado"}
+            </strong>
+
+            <span>
+              {material.cidade || "São Paulo"} - SP
+            </span>
+          </div>
+
+          <p className="aviso-localizacao">
+            O endereço exato não é exibido nesta etapa. A
+            localização aproximada será usada para indicar a
+            região da coleta.
+          </p>
+        </section>
+
+        <div className="detalhes-acoes">
+          <button
+            className="botao-assumir"
+            onClick={assumirColeta}
+            disabled={material.status !== "disponivel"}
+          >
+            {material.status === "disponivel"
+              ? "Tenho interesse em coletar"
+              : "Coleta não disponível"}
+          </button>
+
+          <button
+            className="botao-voltar"
+            onClick={() => navigate("/coletador")}
+          >
+            Voltar
+          </button>
+        </div>
+      </section>
     </main>
   );
 }

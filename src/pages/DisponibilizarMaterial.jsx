@@ -9,23 +9,37 @@ function DisponibilizarMaterial() {
   const navigate = useNavigate();
 
   const [dados, setDados] = useState({
-    material: "",
-    quantidade: "",
-    unidade: "",
     descricao: "",
     data: "",
     horario: "",
+    bairro: "",
   });
 
+  const [materialAtual, setMaterialAtual] = useState("");
+  const [quantidadeAtual, setQuantidadeAtual] = useState("");
+  const [unidadeAtual, setUnidadeAtual] = useState("");
+
+  const [materiais, setMateriais] = useState([]);
+
   const unidadesPorMaterial = {
-  papelao: ["caixas", "unidades"],
-  plastico: ["unidades", "saco-1L", "saco-5L"],
-  latas: ["unidades", "saco-1L", "saco-5L"],
-  "garrafas-pet": ["unidades"],
-  vidro: ["unidades"],
-  eletronicos: ["unidades"],
-  outros: ["unidades", "saco-1L", "saco-5L"],
-};
+    papelao: ["caixas", "unidades"],
+    plastico: ["unidades"],
+    latas: ["unidades", "sacos-1L", "sacos-5L"],
+    "garrafas-pet": ["unidades"],
+    vidro: ["unidades"],
+    eletronicos: ["unidades"],
+    outros: ["unidades","caixas", "sacos-1L", "sacos-5L"],
+  };
+
+  const nomesMateriais = {
+    papelao: "Papelão",
+    plastico: "Plástico",
+    latas: "Latas",
+    "garrafas-pet": "Garrafas PET",
+    vidro: "Vidro",
+    eletronicos: "Eletrônicos",
+    outros: "Outros",
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -36,17 +50,58 @@ function DisponibilizarMaterial() {
     });
   };
 
+  const handleMaterialChange = (event) => {
+    setMaterialAtual(event.target.value);
+
+    // Quando mudar o material, limpa a unidade anterior
+    setUnidadeAtual("");
+  };
+
+  const adicionarMaterial = () => {
+    if (!materialAtual || !quantidadeAtual || !unidadeAtual) {
+      alert("Preencha material, quantidade e unidade.");
+      return;
+    }
+
+    const materialJaAdicionado = materiais.some(
+      (item) => item.material === materialAtual
+    );
+
+    if (materialJaAdicionado) {
+      alert("Esse material já foi adicionado à coleta.");
+      return;
+    }
+
+    const novoMaterial = {
+      material: materialAtual,
+      quantidade: Number(quantidadeAtual),
+      unidade: unidadeAtual,
+    };
+
+    setMateriais([...materiais, novoMaterial]);
+
+    // Limpa os campos para permitir adicionar outro material
+    setMaterialAtual("");
+    setQuantidadeAtual("");
+    setUnidadeAtual("");
+  };
+
+  const removerMaterial = (index) => {
+    const novaLista = materiais.filter((_, i) => i !== index);
+
+    setMateriais(novaLista);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (
-      !dados.material ||
-      !dados.quantidade ||
-      !dados.unidade ||
-      !dados.data ||
-      !dados.horario
-    ) {
-      alert("Preencha todos os campos obrigatórios.");
+    if (materiais.length === 0) {
+      alert("Adicione pelo menos um material.");
+      return;
+    }
+
+    if (!dados.data || !dados.horario || !dados.bairro) {
+      alert("Preencha a data, o horário e o bairro.");
       return;
     }
 
@@ -56,33 +111,39 @@ function DisponibilizarMaterial() {
     const usuarioAtual = auth.currentUser;
 
     if (!usuarioAtual) {
-      alert("Você precisa estar logado para disponibilizar um material.");
+      alert("Você precisa estar logado para disponibilizar uma coleta.");
       navigate("/login");
       return;
     }
 
     try {
       const materiaisRef = ref(db, "materiais");
-      const novoMaterialRef = push(materiaisRef);
+      const novaColetaRef = push(materiaisRef);
 
-      await set(novoMaterialRef, {
+      await set(novaColetaRef, {
         usuarioId: usuarioAtual.uid,
-        material: dados.material,
-        quantidade: Number(dados.quantidade),
-        unidade: dados.unidade,
+
+        materiais: materiais,
+
         descricao: dados.descricao,
+
         data: dados.data,
         horario: dados.horario,
+
+        bairro: dados.bairro,
+        cidade: "São Paulo",
+
         status: "disponivel",
+
         criadoEm: Date.now(),
       });
 
-      alert("Material disponibilizado com sucesso!");
+      alert("Coleta disponibilizada com sucesso!");
 
       navigate("/gerador");
     } catch (error) {
       console.error(error);
-      alert("Não foi possível disponibilizar o material.");
+      alert("Não foi possível disponibilizar a coleta.");
     }
   };
 
@@ -95,51 +156,83 @@ function DisponibilizarMaterial() {
       </p>
 
       <form onSubmit={handleSubmit}>
-       <label>Material</label>
+        <label>Material</label>
 
-<select
-  name="material"
-  value={dados.material}
-  onChange={handleChange}
->
-  <option value="">Selecione um material</option>
-  <option value="papelao">Papelão</option>
-  <option value="plastico">Plástico</option>
-  <option value="latas">Latas</option>
-  <option value="garrafas-pet">Garrafas PET</option>
-  <option value="vidro">Vidro</option>
-  <option value="eletronicos">Eletrônicos</option>
-  <option value="outros">Outros</option>
-</select>
+        <select
+          value={materialAtual}
+          onChange={handleMaterialChange}
+        >
+          <option value="">Selecione um material</option>
+
+          <option value="papelao">Papelão</option>
+          <option value="plastico">Plástico</option>
+          <option value="latas">Latas</option>
+          <option value="garrafas-pet">Garrafas PET</option>
+          <option value="vidro">Vidro</option>
+          <option value="eletronicos">Eletrônicos</option>
+          <option value="outros">Outros</option>
+        </select>
 
         <label>Quantidade</label>
 
         <input
           type="number"
-          name="quantidade"
           min="1"
           placeholder="Ex.: 10"
-          value={dados.quantidade}
-          onChange={handleChange}
+          value={quantidadeAtual}
+          onChange={(event) => setQuantidadeAtual(event.target.value)}
         />
 
         <label>Unidade</label>
 
-<select
-  name="unidade"
-  value={dados.unidade}
-  onChange={handleChange}
-  disabled={!dados.material}
->
-  <option value="">Selecione uma unidade</option>
+        <select
+          value={unidadeAtual}
+          onChange={(event) => setUnidadeAtual(event.target.value)}
+          disabled={!materialAtual}
+        >
+          <option value="">Selecione uma unidade</option>
 
-  {dados.material &&
-    unidadesPorMaterial[dados.material].map((unidade) => (
-      <option key={unidade} value={unidade}>
-        {unidade}
-      </option>
-    ))}
-</select>
+          {materialAtual &&
+            unidadesPorMaterial[materialAtual].map((unidade) => (
+              <option key={unidade} value={unidade}>
+                {unidade}
+              </option>
+            ))}
+        </select>
+
+        <button
+          type="button"
+          className="adicionar-material"
+          onClick={adicionarMaterial}
+        >
+          + Adicionar outro material
+        </button>
+
+        {materiais.length > 0 && (
+          <div className="materiais-adicionados">
+            <h2>Materiais da coleta</h2>
+
+            {materiais.map((item, index) => (
+              <div className="material-item" key={index}>
+                <div>
+                  <strong>{nomesMateriais[item.material]}</strong>
+
+                  <span>
+                    {item.quantidade} {item.unidade}
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  className="remover-material"
+                  onClick={() => removerMaterial(index)}
+                >
+                  Remover
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
 
         <label>Descrição (opcional)</label>
 
@@ -168,11 +261,71 @@ function DisponibilizarMaterial() {
           onChange={handleChange}
         />
 
+        <label>Localização aproximada</label>
+
+        <select
+          name="bairro"
+          value={dados.bairro}
+          onChange={handleChange}
+        >
+          <option value="">Selecione o bairro</option>
+
+          <option value="São Miguel Paulista">
+            São Miguel Paulista
+          </option>
+
+          <option value="Jardim Helena">
+            Jardim Helena
+          </option>
+
+          <option value="Vila Jacuí">
+            Vila Jacuí
+          </option>
+
+          <option value="Vila Curuçá">
+            Vila Curuçá
+          </option>
+
+          <option value="Jardim Romano">
+            Jardim Romano
+          </option>
+
+          <option value="Jardim Maia">
+            Jardim Maia
+          </option>
+
+          <option value="Itaim Paulista">
+            Itaim Paulista
+          </option>
+
+          <option value="Ermelino Matarazzo">
+            Ermelino Matarazzo
+          </option>
+
+          <option value="Penha">
+            Penha
+          </option>
+
+          <option value="Itaquera">
+            Itaquera
+          </option>
+
+          <option value="Outro">
+            Outro
+          </option>
+        </select>
+
+        <small className="ajuda-localizacao">
+          O bairro será mostrado ao coletador para indicar a região
+          aproximada da coleta.
+        </small>
+
         <button type="submit">
-          Disponibilizar material
+          Disponibilizar coleta
         </button>
       </form>
-   <button
+
+      <button
         className="pontos-voltar"
         onClick={() => navigate("/gerador")}
       >

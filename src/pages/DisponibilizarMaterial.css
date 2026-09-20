@@ -270,3 +270,123 @@
   transform: translateY(-2px);
   background: rgba(255, 255, 255, 0.95);
 }
+
+/* Botão para adicionar outro material */
+
+.adicionar-material {
+  margin-top: 8px;
+  padding: 11px 16px;
+  border: 1px solid #36b879;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #16834d;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.adicionar-material:hover {
+  background: #effcf5;
+  transform: translateY(-1px);
+}
+
+
+/* Lista de materiais adicionados */
+
+.materiais-adicionados {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(226, 250, 238, 0.7);
+  border: 1px solid rgba(54, 184, 121, 0.25);
+}
+
+.materiais-adicionados h2 {
+  margin: 0 0 14px;
+  font-size: 1rem;
+  color: #07536a;
+}
+
+
+/* Cada material da lista */
+
+.material-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(7, 83, 106, 0.1);
+}
+
+.material-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.material-item:first-of-type {
+  padding-top: 0;
+}
+
+.material-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.material-item strong {
+  color: #07536a;
+}
+
+.material-item span {
+  font-size: 0.9rem;
+  color: #4b7480;
+}
+
+
+/* Botão remover */
+
+.remover-material {
+  padding: 7px 11px;
+  border: none;
+  border-radius: 9px;
+  background: rgba(220, 70, 70, 0.1);
+  color: #c44747;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.remover-material:hover {
+  background: rgba(220, 70, 70, 0.18);
+  transform: translateY(-1px);
+}
+
+
+/* Texto explicativo da localização */
+
+.ajuda-localizacao {
+  margin-top: -2px;
+  color: #6d8c94;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+
+/* Responsividade */
+
+@media (max-width: 700px) {
+  .material-item {
+    align-items: flex-start;
+  }
+
+  .remover-material {
+    flex-shrink: 0;
+  }
+}

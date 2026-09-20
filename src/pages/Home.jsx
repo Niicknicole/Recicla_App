@@ -41,12 +41,7 @@ function Home() {
             uma comunidade <span>mais sustentável.</span>
           </h2>
 
-          <p className="home-description">
-            O Recicla+ conecta pessoas que possuem materiais recicláveis
-            a coletadores da comunidade, facilitando a reciclagem e o
-            reaproveitamento de materiais.
-          </p>
-
+        
           <div className="home-actions">
             <Link
               to="/cadastro"
