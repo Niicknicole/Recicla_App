@@ -321,3 +321,27 @@
     gap: 4px;
   }
 }
+.botao-excluir-historico {
+  margin-top: 15px;
+  padding: 10px 16px;
+
+  border: 1px solid rgba(196, 71, 71, 0.3);
+  border-radius: 10px;
+
+  background: rgba(220, 70, 70, 0.08);
+  color: #c44747;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.botao-excluir-historico:hover {
+  background: rgba(220, 70, 70, 0.16);
+  transform: translateY(-1px);
+}

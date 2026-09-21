@@ -12,6 +12,8 @@ import DetalhesMaterial from "./pages/DetalhesMaterial";
 import Perfil from "./pages/Perfil";
 import PontosColeta from "./pages/PontosColeta";
 import RotaProtegida from "./components/RotaProtegida";
+import Conversa from "./pages/Conversa";
+
 
 function App() {
   return (
@@ -72,6 +74,14 @@ function App() {
           </RotaProtegida>
         }
       />
+      <Route
+  path="/conversa/:id"
+  element={
+    <RotaProtegida>
+      <Conversa />
+    </RotaProtegida>
+  }
+/>
 
       <Route
         path="/perfil"

@@ -109,13 +109,21 @@ function DetalhesMaterial() {
         coletadorId: usuarioAtual.uid,
       });
 
-      alert("Coleta assumida com sucesso!");
+      setMaterial((materialAtual) => ({
+        ...materialAtual,
+        status: "em_coleta",
+        coletadorId: usuarioAtual.uid,
+      }));
 
-      navigate("/coletador");
+      alert("Coleta assumida com sucesso!");
     } catch (error) {
       console.error(error);
       alert("Não foi possível assumir esta coleta.");
     }
+  };
+
+  const entrarEmContato = () => {
+    navigate(`/conversa/${id}`);
   };
 
   if (!material) {
@@ -128,6 +136,8 @@ function DetalhesMaterial() {
       </main>
     );
   }
+
+  const coletaAssumida = material.status === "em_coleta";
 
   return (
     <main className="detalhes-material">
@@ -210,15 +220,24 @@ function DetalhesMaterial() {
         </section>
 
         <div className="detalhes-acoes">
-          <button
-            className="botao-assumir"
-            onClick={assumirColeta}
-            disabled={material.status !== "disponivel"}
-          >
-            {material.status === "disponivel"
-              ? "Tenho interesse em coletar"
-              : "Coleta não disponível"}
-          </button>
+          {!coletaAssumida ? (
+            <button
+              className="botao-assumir"
+              onClick={assumirColeta}
+              disabled={material.status !== "disponivel"}
+            >
+              {material.status === "disponivel"
+                ? "Tenho interesse em coletar"
+                : "Coleta não disponível"}
+            </button>
+          ) : (
+            <button
+              className="botao-assumir"
+              onClick={entrarEmContato}
+            >
+              Entrar em contato com o gerador
+            </button>
+          )}
 
           <button
             className="botao-voltar"
