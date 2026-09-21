@@ -64,16 +64,6 @@ O sistema permite o cadastro de diferentes tipos de materiais:
 - Eletrônicos
 - Outros
 
-A unidade de medida varia de acordo com o material. Por exemplo:
-
-- Papelão: caixas ou unidades
-- Plástico: unidades ou sacos de 1 L / 10 L
-- Latas: unidades ou sacos de 1 L / 10 L
-- Garrafas PET: unidades
-- Vidro: unidades
-- Eletrônicos: unidades
-- Outros: unidades ou sacos de 1 L / 10 L
-
 ## Funcionalidades
 
 ### Autenticação
